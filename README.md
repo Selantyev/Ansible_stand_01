@@ -114,3 +114,56 @@ nginx | SUCCESS => {
 ```
 
 6. Приступить к написанию роли nginx
+
+7. Прверить nginx после выполенния роли
+
+```
+systemctl status nginx
+● nginx.service - nginx - high performance web server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2021-02-02 11:40:50 UTC; 1min 16s ago
+     Docs: http://nginx.org/en/docs/
+  Process: 1728 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)
+ Main PID: 1729 (nginx)
+   CGroup: /system.slice/nginx.service
+           ├─1729 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+           └─1730 nginx: worker process
+
+Feb 02 11:40:50 nginx systemd[1]: Starting nginx - high performance web server...
+Feb 02 11:40:50 nginx systemd[1]: Can't open PID file /var/run/nginx.pid (yet?) after start: No such file or directory
+Feb 02 11:40:50 nginx systemd[1]: Started nginx - high performance web server.
+```
+
+```
+ss -tulpn |grep 8080
+tcp    LISTEN     0      128       *:8080                  *:*                   users:(("nginx",pid=1730,fd=6),("nginx",pid=1729,fd=6))
+```
+
+```
+curl localhost:8080
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```
