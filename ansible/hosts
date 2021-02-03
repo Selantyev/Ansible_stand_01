@@ -1,0 +1,8 @@
+[nginx_lab]
+#192.168.50.15
+nginx
+
+[nginx_lab:vars]
+ansible_connection=ssh
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant
