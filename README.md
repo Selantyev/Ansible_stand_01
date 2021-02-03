@@ -21,7 +21,7 @@ yum install ansible -y
 forks = 25
 transport = ssh
 host_key_checking = False
-roles_path = /home/vagrant/ansible/
+roles_path = /home/vagrant/ansible/roles.galaxy/nginx
 retry_files_enabled = False
 ansible_user = vagrant
 inventory = /home/vagrant/ansible/hosts
@@ -113,4 +113,4 @@ nginx | SUCCESS => {
 }
 ```
 
-6. 
+6. Приступить к написанию роли nginx
